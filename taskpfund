@@ -1,0 +1,59 @@
+# Program: "Space Explorer"
+
+
+import random
+
+def main():
+    print("Welcome to Space Explorer!")
+    print("You're on a mission to explore the galaxy.")
+    name = input("Enter your name: ")
+    ship_name = input("Enter your ship's name: ")
+    fuel_level = int(input("Enter your fuel level (1-100): "))
+    oxygen_level = int(input("Enter your oxygen level (1-100): "))
+
+    print("\nYour Stats:")
+    for stat, value in [("Name", name), ("Ship Name", ship_name), ("Fuel Level", fuel_level), ("Oxygen Level", oxygen_level)]:
+        print(f"{stat}: {value}")
+
+
+    game_over = False
+    while not game_over:
+        print("\nYou're floating in space. What do you do?")
+        action = input("Enter 'explore', 'refuel', 'replenish oxygen', or 'quit': ")
+
+        if action.lower() == "explore":
+            print("You start exploring the galaxy.")
+            
+            for i in range(3):
+                print(f"\nChallenge {i+1}:")
+                challenge = random.randint(1, 10)
+                if challenge > fuel_level:
+                    print("You run out of fuel. Game over.")
+                    game_over = True
+                    break
+                else:
+                    print("You pass the challenge!")
+                    fuel_level -= challenge
+        elif action.lower() == "refuel":
+            print("You refuel your ship.")
+            fuel_level = 100
+        elif action.lower() == "replenish oxygen":
+            print("You replenish your oxygen supply.")
+            oxygen_level = 100
+        elif action.lower() == "quit":
+            print("You give up. Game over.")
+            game_over = True
+        else:
+            print("Invalid action. Try again.")
+
+
+        if game_over:
+            print("\nGame Over!")
+            break
+
+        print("\nStatus Update:")
+        for stat, value in [("Fuel Level", fuel_level), ("Oxygen Level", oxygen_level)]:
+            print(f"{stat}: {value}")
+
+if _name_ == "_main_":
+    main()
